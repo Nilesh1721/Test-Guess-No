@@ -17,18 +17,17 @@ steps:
 
 - task: CopyFilesOverSSH@0
   inputs:
-    sshEndpoint: 'Linux Testing'  # Name of your service connection
+    sshEndpoint: 'Linux Testing'  # Adjusted to existing service name
     sourceFolder: '$(Build.SourcesDirectory)/Test-Guess-No'
     contents: '**'
-    targetFolder: '/home/nilesh/file'  # Adjust as needed
+    targetFolder: '/home/nilesh/file'
     cleanTargetFolder: true
 
 - task: SSH@0
   inputs:
-    sshEndpoint: 'CentOS-SSH'
+    sshEndpoint: 'Linux Testing'
     runOptions: 'commands'
     command: |
       cd /home/nilesh/file
       pip3 install flask
       nohup python3 app.py &
-    workingDirectory: ''
